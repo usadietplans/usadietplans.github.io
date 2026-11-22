@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>USA Diet Plans — Practical diet plans and calculators for life in the USA.</title>
+<meta name="description" content="USA Diet Plans: BMI and calorie calculators, DASH, keto, intermittent fasting and practical diet guides for Americans.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#fff;color:#1B3A5C;line-height:1.65}.wrap{max-width:1000px;margin:0 auto;padding:0 16px}header{background:#1B3A5C;padding:16px 0}.brand{color:#fff;font-size:28px;font-weight:bold;text-decoration:none}.brand span{color:#7ED957}.tagline{color:#CDE3F0;margin:4px 0 10px}nav a{color:#fff;text-decoration:none;margin-right:16px}nav a:hover{color:#7ED957}.hero{background:#EAF2F8;padding:30px 20px;border-radius:0 0 12px 12px}.hero h1{margin:0 0 10px;font-size:34px;color:#1B3A5C}h1,h2,h3{color:#1B3A5C}.toolgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}.tool{background:#F0F7F0;border:2px solid #2E8B57;border-radius:10px;padding:18px}.tool h3{margin-top:0;color:#2E8B57}label{display:block;margin:8px 0 4px;font-weight:bold;font-size:14px}input,select{width:100%;max-width:340px;padding:9px;border:1px solid #9AB3C7;border-radius:6px;font-size:15px}button{background:#2E8B57;color:#fff;border:none;padding:10px 18px;border-radius:6px;font-weight:bold;cursor:pointer;margin-top:10px}button:hover{background:#256F45}.result{margin-top:12px;background:#fff;border-left:4px solid #2E8B57;padding:10px;font-size:14px}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}.card{border:1px solid #D5E3EE;border-radius:10px;overflow:hidden}.card img{width:100%;height:170px;object-fit:cover;display:block}.card h3{margin:12px 12px 4px}.card h3 a{color:#1B3A5C;text-decoration:none}.card p{margin:0 12px 14px;font-size:14px}footer{background:#1B3A5C;color:#fff;padding:20px 0;margin-top:40px;font-size:14px}footer a{color:#7ED957}.article-img{width:100%;height:auto;border-radius:10px;margin:12px 0}ul,ol{padding-left:22px}</style>
+</head>
+<body>
+<header><div class="wrap"><a class="brand" href="index.html">USA Diet Plans</a><p class="tagline">Practical diet plans and calculators for life in the USA.</p><nav><a href="index.html">Home</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy Policy</a><a href="disclaimer.html">Disclaimer</a></nav></div></header>
+<div class="wrap">
+
+<section class="tools"><h2>Diet Calculators</h2><div class="toolgrid">
+<div class="tool"><h3>1. BMI Calculator</h3>
+<label>Weight (kg) <input id="bW" type="number" value="70" min="20" max="300"></label>
+<label>Height (cm) <input id="bH" type="number" value="175" min="100" max="250"></label>
+<button onclick="calcBMI()">Calculate BMI</button><div class="result" id="bOut"></div></div>
+<div class="tool"><h3>2. Daily Calorie Needs (Mifflin-St Jeor)</h3>
+<label>Sex <select id="calSex"><option value="m">Male</option><option value="f">Female</option></select></label>
+<label>Weight (kg) <input id="calW" type="number" value="80" min="20" max="300"></label>
+<label>Height (cm) <input id="calH" type="number" value="180" min="100" max="250"></label>
+<label>Age (years) <input id="calA" type="number" value="30" min="10" max="100"></label>
+<label>Activity <select id="calAct"><option value="1.2">Sedentary (1.2)</option><option value="1.375">Light (1.375)</option><option value="1.55" selected>Moderate (1.55)</option><option value="1.725">Active (1.725)</option><option value="1.9">Very active (1.9)</option></select></label>
+<button onclick="calcCal()">Calculate calories</button><div class="result" id="calOut"></div></div>
+<div class="tool"><h3>3. Macro Split Calculator</h3>
+<label>Daily calories <input id="mCal" type="number" value="2000" min="800" max="6000"></label>
+<label>Protein % <input id="mP" type="number" value="30" min="0" max="100"></label>
+<label>Carbs % <input id="mC" type="number" value="40" min="0" max="100"></label>
+<label>Fat % <input id="mF" type="number" value="30" min="0" max="100"></label>
+<button onclick="calcMacro()">Calculate macros</button><div class="result" id="mOut"></div></div>
+<div class="tool"><h3>4. Ideal Weight Calculator</h3>
+<label>Height (cm) <input id="iH" type="number" value="175" min="100" max="250"></label>
+<button onclick="calcIdeal()">Calculate ideal range</button><div class="result" id="iOut"></div></div>
+<div class="tool"><h3>5. Meal-Plan Calorie Planner</h3>
+<label>Daily calories <input id="pCal" type="number" value="2000" min="800" max="6000"></label>
+<label>Meals per day <input id="pMeals" type="number" value="3" min="1" max="6"></label>
+<label>Snacks per day <input id="pSnacks" type="number" value="1" min="0" max="3"></label>
+<button onclick="calcPlan()">Plan my day</button><div class="result" id="pOut"></div></div>
+</div></section>
+<script>
+function calcBMI(){var w=+document.getElementById('bW').value,h=+document.getElementById('bH').value/100;if(!w||!h){document.getElementById('bOut').textContent='Enter weight and height.';return;}var b=w/(h*h);var c=b<18.5?'Underweight':b<25?'Healthy weight':b<30?'Overweight':'Obese';document.getElementById('bOut').textContent='Your BMI is '+b.toFixed(1)+' ('+c+').';}
+function calcCal(){var s=document.getElementById('calSex').value,w=+document.getElementById('calW').value,h=+document.getElementById('calH').value,a=+document.getElementById('calA').value,f=+document.getElementById('calAct').value;var bmr=s==='m'?10*w+6.25*h-5*a+5:10*w+6.25*h-5*a-161;var t=bmr*f;document.getElementById('calOut').textContent='BMR: '+Math.round(bmr)+' kcal/day. TDEE: '+Math.round(t)+' kcal/day to maintain weight.';}
+function calcMacro(){var cal=+document.getElementById('mCal').value,p=+document.getElementById('mP').value,c=+document.getElementById('mC').value,f=+document.getElementById('mF').value;if(p+c+f!==100){document.getElementById('mOut').textContent='Protein + carbs + fat must add up to 100%. Yours adds to '+(p+c+f)+'%.';return;}document.getElementById('mOut').textContent='Protein: '+Math.round(cal*p/100/4)+' g, Carbs: '+Math.round(cal*c/100/4)+' g, Fat: '+Math.round(cal*f/100/9)+' g per day.';}
+function calcIdeal(){var h=+document.getElementById('iH').value/100;var lo=18.5*h*h,hi=24.9*h*h;document.getElementById('iOut').textContent='Healthy weight range for '+document.getElementById('iH').value+' cm: '+lo.toFixed(1)+' to '+hi.toFixed(1)+' kg (BMI 18.5-24.9).';}
+function calcPlan(){var cal=+document.getElementById('pCal').value,m=+document.getElementById('pMeals').value,s=+document.getElementById('pSnacks').value;if(!m){document.getElementById('pOut').textContent='Enter at least 1 meal.';return;}var snackCal=s>0?Math.round(cal*0.1):0;var mealCal=Math.round((cal-snackCal*s)/m);var txt='Each of your '+m+' meals: about '+mealCal+' kcal.';if(s>0)txt+=' Each snack: about '+snackCal+' kcal.';document.getElementById('pOut').textContent=txt;}
+</script>
+
+<section class="hero"><h1>Find a Diet Plan That Fits Your Life</h1><p>Start with the calculators above, then read the guides below — practical, evidence-based diet advice for the USA.</p></section>
+<h2>All 20 Diet Guides</h2>
+<div class="cards">
+<div class="card"><img src="images/dash-diet.jpg" alt="DASH Diet"><h3><a href="guides/dash-diet.html">DASH Diet</a></h3><p>The DASH diet was designed to lower blood pressure, and it works by filling your plate with vegetables, fruit, whole grains and low-fat dairy. A longer read with extra tips and serving ideas.</p></div>
+<div class="card"><img src="images/intermittent-fasting.jpg" alt="Intermittent Fasting"><h3><a href="guides/intermittent-fasting.html">Intermittent Fasting</a></h3><p>Intermittent fasting is an eating pattern that cycles between eating and fasting windows, and many people in the USA use the 16:8 method.</p></div>
+<div class="card"><img src="images/portion-control.jpg" alt="Portion Control"><h3><a href="guides/portion-control.html">Portion Control</a></h3><p>Portion control is the simplest weight tool there is: it lets you keep eating the foods you like, in amounts that match what your body actually needs.</p></div>
+<div class="card"><img src="images/eating-out-healthy.jpg" alt="Eating Out Healthy"><h3><a href="guides/eating-out-healthy.html">Eating Out Healthy</a></h3><p>Eating out in the USA does not have to undo your diet. With a few ordering habits you can enjoy restaurants and still eat well. A longer read with extra tips and serving ideas.</p></div>
+<div class="card"><img src="images/mediterranean-diet-usa.jpg" alt="Mediterranean Diet in the USA"><h3><a href="guides/mediterranean-diet-usa.html">Mediterranean Diet in the USA</a></h3><p>The Mediterranean diet adapts easily to American supermarkets: olive oil, fish, beans, vegetables and whole grains are all easy to find here.</p></div>
+<div class="card"><img src="images/low-carb-basics.jpg" alt="Low-Carb Basics"><h3><a href="guides/low-carb-basics.html">Low-Carb Basics</a></h3><p>A low-carb diet cuts back on bread, pasta, rice and sugar, and replaces them with vegetables, protein and healthy fats, which helps many people feel fuller.</p></div>
+<div class="card"><img src="images/keto-in-the-usa.jpg" alt="Keto in the USA"><h3><a href="guides/keto-in-the-usa.html">Keto in the USA</a></h3><p>Keto in the USA is easier than it looks: American stores stock plenty of low-carb foods, from eggs and cheese to cauliflower rice and lettuce wraps. A longer read with extra tips and serving ideas.</p></div>
+<div class="card"><img src="images/whole30.jpg" alt="Whole30"><h3><a href="guides/whole30.html">Whole30</a></h3><p>Whole30 is a 30-day reset that removes sugar, alcohol, grains, legumes, dairy and additives, then reintroduces foods one group at a time.</p></div>
+<div class="card"><img src="images/paleo-diet.jpg" alt="Paleo Diet"><h3><a href="guides/paleo-diet.html">Paleo Diet</a></h3><p>The paleo diet focuses on foods our ancestors could hunt or gather: meat, fish, eggs, vegetables, fruit, nuts and seeds, with no grains or dairy.</p></div>
+<div class="card"><img src="images/vegetarian-diet-usa.jpg" alt="Vegetarian Diet USA"><h3><a href="guides/vegetarian-diet-usa.html">Vegetarian Diet USA</a></h3><p>A vegetarian diet in the USA is well supported: supermarkets carry tofu, tempeh, beans, lentils and fortified plant milks in almost every town. A longer read with extra tips and serving ideas.</p></div>
+<div class="card"><img src="images/high-protein-diet.jpg" alt="High-Protein Diet"><h3><a href="guides/high-protein-diet.html">High-Protein Diet</a></h3><p>A high-protein diet helps many Americans stay full and protect muscle while losing weight, but the protein still needs to come from good sources.</p></div>
+<div class="card"><img src="images/meal-prep-basics.jpg" alt="Meal Prep Basics"><h3><a href="guides/meal-prep-basics.html">Meal Prep Basics</a></h3><p>Meal prep turns one focused cooking session into a week of healthy lunches and dinners, and it is the single best habit for eating well on a busy schedule.</p></div>
+<div class="card"><img src="images/grocery-shopping-guide.jpg" alt="Grocery Shopping Guide"><h3><a href="guides/grocery-shopping-guide.html">Grocery Shopping Guide</a></h3><p>A good grocery trip starts before you leave home: a list, a plan for the week, and a route that keeps you in the fresh-food aisles. A longer read with extra tips and serving ideas.</p></div>
+<div class="card"><img src="images/diet-for-busy-people.jpg" alt="Diet for Busy People"><h3><a href="guides/diet-for-busy-people.html">Diet for Busy People</a></h3><p>A diet for busy people has to work on the worst day, not just the best one, so it is built on quick foods, batch cooking and smart takeaway choices.</p></div>
+<div class="card"><img src="images/diet-for-seniors.jpg" alt="Diet for Seniors"><h3><a href="guides/diet-for-seniors.html">Diet for Seniors</a></h3><p>As we age, our bodies need more protein and calcium but fewer calories, so a senior diet is about nutrient density: more nutrition in every bite.</p></div>
+<div class="card"><img src="images/diet-and-exercise.jpg" alt="Diet and Exercise"><h3><a href="guides/diet-and-exercise.html">Diet and Exercise</a></h3><p>Diet and exercise work as a team: food provides the fuel and the building blocks, and exercise decides how your body uses them. A longer read with extra tips and serving ideas.</p></div>
+<div class="card"><img src="images/sugar-reduction.jpg" alt="Sugar Reduction"><h3><a href="guides/sugar-reduction.html">Sugar Reduction</a></h3><p>Cutting back on sugar is one of the fastest ways to improve a diet, and most of the sugar Americans eat comes from drinks and processed foods.</p></div>
+<div class="card"><img src="images/healthy-snacks-usa.jpg" alt="Healthy Snacks USA"><h3><a href="guides/healthy-snacks-usa.html">Healthy Snacks USA</a></h3><p>Healthy snacks in the USA are easy once you know what to look for: nuts, fruit, yogurt, hummus and popcorn are all widely available and filling.</p></div>
+<div class="card"><img src="images/weight-maintenance.jpg" alt="Weight Maintenance"><h3><a href="guides/weight-maintenance.html">Weight Maintenance</a></h3><p>Keeping weight off is a different skill from losing it, and it depends on habits you can live with for years, not on willpower alone. A longer read with extra tips and serving ideas.</p></div>
+<div class="card"><img src="images/diet-myths-debunked.jpg" alt="Diet Myths Debunked"><h3><a href="guides/diet-myths-debunked.html">Diet Myths Debunked</a></h3><p>Diet advice in the USA is full of myths that sound convincing but do not hold up, from detox teas to the idea that carbs are the enemy.</p></div>
+</div>
+</div>
+<footer><div class="wrap"><p>USA Diet Plans — Practical diet plans and calculators for life in the USA.</p><p><a href="index.html">Home</a> | <a href="about.html">About</a> | <a href="contact.html">Contact</a> | <a href="privacy.html">Privacy Policy</a> | <a href="disclaimer.html">Disclaimer</a></p><p>This site shares general information only. It is not medical advice. Talk to a qualified professional before changing your diet.</p></div></footer>
+</body>
+</html>
